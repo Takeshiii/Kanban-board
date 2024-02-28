@@ -3,6 +3,7 @@ import {
   DndContext,
   KeyboardSensor,
   PointerSensor,
+  TouchSensor,
   closestCenter,
   useSensor,
   useSensors,
@@ -44,6 +45,13 @@ export const Column = ({ columnName, columnId, boardId }) => {
     },
   });
 
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 100,
+      tolerance: 5,
+    },
+  });
+
   const keyboardSensor = useSensor(KeyboardSensor, {
     coordinateGetter: sortableKeyboardCoordinates,
     keyboardCodes: {
@@ -53,7 +61,7 @@ export const Column = ({ columnName, columnId, boardId }) => {
     },
   });
 
-  const sensors = useSensors(keyboardSensor, pointerSensor);
+  const sensors = useSensors(keyboardSensor, pointerSensor, touchSensor);
 
   if (isLoading || isFetching) {
     return <Skeleton variant="rectangular" />;

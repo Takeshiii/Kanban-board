@@ -6,7 +6,7 @@ This pet project is a Kanban board with a user-friendly interface and responsive
 
 1.  Install Dependencies:
 
-    - After downloading the project, run the command `npm install` to install necessary dependencies.
+    - After downloading the project, run the command npm install to install necessary dependencies in both general project folder and `server` folder.
 
 2.  Starting server:
 

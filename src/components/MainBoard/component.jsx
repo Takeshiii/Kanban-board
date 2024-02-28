@@ -6,6 +6,7 @@ import {
   DndContext,
   KeyboardSensor,
   PointerSensor,
+  TouchSensor,
   closestCenter,
   useSensor,
   useSensors,
@@ -43,6 +44,13 @@ export const MainContent = () => {
     },
   });
 
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 100,
+      tolerance: 5,
+    },
+  });
+
   const keyboardSensor = useSensor(KeyboardSensor, {
     coordinateGetter: sortableKeyboardCoordinates,
     keyboardCodes: {
@@ -52,7 +60,7 @@ export const MainContent = () => {
     },
   });
 
-  const sensors = useSensors(keyboardSensor, pointerSensor);
+  const sensors = useSensors(keyboardSensor, pointerSensor, touchSensor);
 
   if (isLoading || isFetching) {
     return <Skeleton variant="rectangular" />;
